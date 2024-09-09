@@ -1,0 +1,73 @@
+{% extends 'mis_notas/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Post it Simulator !</h1>
+        <div class="container xl">
+            <form action="{% url 'crear' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input class="input form-control m-2" name="titulo" type="text" placeholder="Titulo" />
+                    <input class="input form-control m-2" name="descripcion" type="text" placeholder="Descripcion" />
+                    <div class="form-check m-2">
+                        <input class="form-check-input" name="importante" type="checkbox" />
+                        <label class="form-check-label">
+                            Importante !
+                        </label>
+                    </div>
+                    <button class="btn btn-dark m-2">Agregar</button>
+                </div>
+            </form>
+        </div>
+
+
+        {% if notas %}
+        <div class="container xl d-flex flex-wrap"></div>
+            
+            {% for n in notas %}
+                <!--Esto es una nota importante-->
+                {% if n.importante == True %}
+                <div class="note p-3 m-3 important">
+                    <div class="note-header d-flex justify-content-between">
+                        <h3 name="tit">{{n.titulo}}</h3>
+                        <form action="{% url 'eliminar' %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" value="{{n.titulo}}" name="title" readonly hidden>
+                            <button class="btn"><i class="bi bi-x"></i></button>
+                        </form>
+                    </div>
+                    <p>{{n.descripcion}}</p>
+                </div>
+                {% else %}
+                <!--Esto es una nota normal-->
+                <div class="note p-3 m-3">
+                    <div class="note-header d-flex justify-content-between">
+                        <h3 name="tit">{{n.titulo}}</h3>
+                        <form action="{% url 'eliminar' %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" value="{{n.titulo}}" name="title" readonly hidden>
+                            <button class="btn"><i class="bi bi-x"></i></button>
+                        </form>
+                    </div>
+                    <p>{{n.descripcion}}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+        {% else %}
+        <div class="container bienvenida">
+            <h1>No hay notas registradas</h1>
+        </div>
+    
+        <style>
+            .bienvenida {
+                display: grid;
+                place-items: center;
+                height: 60vh;
+            }
+        </style>
+        {% endif %}
+       
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+        <div class="container xl d-flex flex-wrap">
+            
+            <!--Esto es una nota importante-->
+            <div class="note p-3 m-3 important">
+                <div class="note-header d-flex justify-content-between">
+                    <h3>Titulo nota 1</h3>
+                    <form action="{% url 'eliminar' %}">
+                        <input type="text" value="" hidden>
+                        <button class="btn"><i class="bi bi-x"></i></button>
+                    </form>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo assumenda perferendis facilis
+                    illo nostrum nesciunt consequuntur hic at, culpa numquam dolorum molestias officiis eveniet
+                    blanditiis id ea, cumque esse ullam.</p>
+            </div>
+
+            <!--Esto es una nota normal-->
+            <div class="note p-3 m-3">
+                <div class="note-header d-flex justify-content-between">
+                    <h3>Titulo nota 2</h3>
+                    <form action="#">
+                        <button class="btn"><i class="bi bi-x"></i></button>
+                    </form>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque nemo quibusdam, placeat, numquam
+                    delectus nisi accusantium reiciendis, perferendis harum porro quos tenetur voluptatem sit expedita
+                    fuga. Quibusdam harum pariatur ullam?</p>
+            </div>
